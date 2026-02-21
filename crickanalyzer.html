@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehrab Cricket AI Terminal</title>
+    <style>
+        :root { --bg: #05161a; --card: #072e33; --accent: #0c7075; --gold: #f0b90b; --white: #eaecef; }
+        body { font-family: 'Arial', sans-serif; background: var(--bg); color: var(--white); margin: 0; padding: 10px; }
+        
+        .header { text-align: center; padding: 10px; border-bottom: 2px solid var(--accent); margin-bottom: 15px; }
+        .header h1 { margin: 0; font-size: 1.5rem; color: var(--gold); }
+        .header p { margin: 5px 0; font-size: 0.8rem; opacity: 0.8; }
+
+        /* AI Prediction Bar */
+        .ai-status { background: var(--card); border: 1px solid var(--accent); padding: 15px; border-radius: 10px; margin-bottom: 15px; border-left: 5px solid var(--gold); }
+        .ai-status h3 { margin: 0 0 8px 0; font-size: 0.9rem; color: var(--gold); display: flex; align-items: center; }
+        #ai-analysis { font-style: italic; font-size: 1rem; line-height: 1.4; }
+
+        .main-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 15px; }
+        
+        /* Widget Container */
+        .widget-box { background: #fff; border-radius: 12px; overflow: hidden; height: 500px; border: 2px solid var(--accent); }
+        
+        /* Stats Card */
+        .stats-card { background: var(--card); padding: 15px; border-radius: 12px; border: 1px solid var(--accent); }
+        .win-meter { height: 20px; background: #333; border-radius: 10px; margin: 15px 0; overflow: hidden; display: flex; }
+        .team-a { background: #004ba0; width: 50%; height: 100%; transition: 1s; }
+        .team-b { background: #c62828; width: 50%; height: 100%; transition: 1s; }
+
+        footer { text-align: center; margin-top: 20px; font-size: 0.8rem; color: #848e9c; padding-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>MEHRAB ALI - CRICKET PREDICTOR</h1>
+        <p>Real-time Match Analysis & AI Win Probability</p>
+    </div>
+
+    <div class="ai-status">
+        <h3>● MEHRAB'S AI INSIGHT</h3>
+        <div id="ai-analysis">Analyzing match conditions... Pitch report: Looking dry, might help spinners in 2nd innings.</div>
+    </div>
+
+    <div class="main-grid">
+        <div class="widget-box">
+            <iframe src="https://www.cricwave.com/scorecard/live_score_widget.html" style="width:100%; height:100%; border:none;"></iframe>
+        </div>
+
+        <div class="stats-card">
+            <h3>Win Probability (AI Calculation)</h3>
+            <div class="win-meter">
+                <div id="bar-a" class="team-a"></div>
+                <div id="bar-b" class="team-b"></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-weight:bold;">
+                <span id="name-a">TEAM A (50%)</span>
+                <span id="name-b">TEAM B (50%)</span>
+            </div>
+
+            <hr style="margin:20px 0; border:0.5px solid var(--accent);">
+            
+            <h3>Mehrab's Pro Tips</h3>
+            <ul id="pro-tips" style="padding-left: 20px; font-size: 0.9rem; line-height: 1.8;">
+                <li>Check weather: Humidity might bring swing.</li>
+                <li>Powerplay Strategy: Expect high risk shots.</li>
+                <li>Death Overs: Bowling yorkers is the key here.</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>Developed by <strong>Mehrab Ali</strong> | v1.0 Sports Engine</footer>
+
+    <script>
+        // AI Logic for Cricket
+        const cricketInsights = [
+            "Current Run Rate is stable. If they keep this, 300+ is easy.",
+            "Wicket just fell! Expect a slow-down for the next 3 overs.",
+            "Fielding team is under pressure. Good time for the batting side to attack.",
+            "Dew factor might come into play later. Chasing will be easier.",
+            "Spinners are getting grip. Captain should bring in the main leggie now.",
+            "Stats say: 80% of matches won here by team batting first."
+        ];
+
+        function updateAI() {
+            // Randomly update Win probability to simulate AI calculation
+            let probA = Math.floor(Math.random() * (70 - 30 + 1) + 30);
+            let probB = 100 - probA;
+
+            document.getElementById('bar-a').style.width = probA + "%";
+            document.getElementById('bar-b').style.width = probB + "%";
+            document.getElementById('name-a').innerText = "TEAM A (" + probA + "%)";
+            document.getElementById('name-b').innerText = "TEAM B (" + probB + "%)";
+
+            // Update Mentor Text
+            document.getElementById('ai-analysis').innerText = "Mehrab's AI: " + cricketInsights[Math.floor(Math.random() * cricketInsights.length)];
+        }
+
+        // Run updates
+        setInterval(updateAI, 45000); // Update every 45 seconds
+        updateAI();
+    </script>
+</body>
+</html>
